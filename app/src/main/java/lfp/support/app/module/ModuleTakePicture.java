@@ -20,8 +20,7 @@ import lfp.support.ma.base.ModulePlatform;
  * </pre>
  */
 public class ModuleTakePicture extends Module {
-    public static final int REQUEST_CODE_TAKE_PICTURE = 15452;
-
+    static final int REQUEST_CODE_TAKE_PICTURE = 15452;
     Action1<Bitmap> mAction;
 
     public ModuleTakePicture(ModulePlatform platform) {

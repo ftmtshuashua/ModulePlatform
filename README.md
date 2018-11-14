@@ -1,7 +1,7 @@
-# [MP](https://github.com/ftmtshuashua/MPBase) 简介
+# [ModulePlatform](https://github.com/ftmtshuashua/ModulePlatform) 简介
 
 
-`MP`虚拟的模块化平台,我们可以把它当作一个虚拟的Activity或者Fragment.
+`ModulePlatform`虚拟的模块化平台,我们可以把它当作一个虚拟的Activity或者Fragment.
 在它上面运行的模块可以获得和Activity或者Fragment完全一直的体验,并且完全独立于真实的Activity或者Fragment实例.
 我们将业务流程模块化之后再将他们自由组合来实现更为复杂的业务,并且不会在Activity或者Fragment中看到臃肿的代码.
 每个单独的模块也有一个很清晰的流程非常容易维护和拓展.
@@ -12,18 +12,18 @@
 
 设置依赖项
 ```
-implementation ''
+implementation 'support.lfp:moduleplatform:1.0.0'
 ```
 该项目在AndroidX基础上搭建,需要一下库:
 ```
-implementation 'androidx.fragment:fragment:1.0.0+' //support-fragment
-implementation 'androidx.appcompat:appcompat:1.0.0+'  //appcompat-v7
+implementation 'androidx.fragment:fragment:1.0.0+'
+implementation 'androidx.appcompat:appcompat:1.0.0+'
 ```
 
 ## 搭建模块化平台
 ```
 1.创建所有Activity和Fragment的基类,BaseActivity和BaseFragment
-2.将BaseActivity和BaseFragment分别继承于MPActivity和MPFragment(如果你已经继承了其他第三方的基类，可以直接拷贝MP**里面的到吗到你的BaseActivity和BaseFragment中)
+2.将BaseActivity和BaseFragment分别继承于MPActivity和MPFragment(如果你已经继承了其他第三方的基类，可以直接拷贝MP**里面的源码到你的BaseActivity和BaseFragment中)
 3.完成.现在可以在任何子类中调用getPlatform(）获得一个虚拟的模块化平台
 ```
 第二步：创建业务模块
@@ -35,6 +35,8 @@ public class ModuleTakePicture extends Module {
        }
 
        //实现模块业务
+       static final int REQUEST_CODE_TAKE_PICTURE = 15452;
+       Action1<Bitmap> mAction;
        /** 调用系统相机拍照并返回数据 */
        public void takePicture(Action1<Bitmap> action1) {
            mAction = action1;
@@ -53,6 +55,8 @@ public class ModuleTakePicture extends Module {
            }
        }
 }
+
+
 //上面代码实现了调用相机并且获得Bitmap数据然后通过Action1接口回调的业务流程
 //下面再看看看Activity中的实现
 void function(){
@@ -67,14 +71,14 @@ void function(){
 
 ## 问题反馈
 
-如果你在使用ARDF中遇到任何问题可以提[Issues](https://github.com/ftmtshuashua/ARDF/issues)出来。另外欢迎大家为ARDF贡献智慧，欢迎大家[Fork and Pull requests](https://github.com/ftmtshuashua/ARDF)。
+如果你在使用ModulePlatform中遇到任何问题可以提[Issues](https://github.com/ftmtshuashua/ModulePlatform/issues)出来。另外欢迎大家为ModulePlatform贡献智慧，欢迎大家[Fork and Pull requests](https://github.com/ftmtshuashua/ModulePlatform)。
 
 如果觉得对你有用的话，点一下右上的星星赞一下吧。
 
 ## LICENSE
 
 ```
-Copyright (c) 2018-present, ARDF Contributors.
+Copyright (c) 2018-present, ModulePlatform Contributors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
