@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+
+    }
+
+
+}
+
+dependencies {
+    compileOnly 'androidx.fragment:fragment:1.0.0+' //support-fragment
+    compileOnly 'androidx.appcompat:appcompat:1.0.0+'  //appcompat-v7
+}
