@@ -2,7 +2,7 @@
 
 
 `ModulePlatform`虚拟的模块化平台,我们可以把它当作一个虚拟的Activity或者Fragment.
-在它上面运行的模块可以获得和Activity或者Fragment完全一直的体验,并且完全独立于真实的Activity或者Fragment实例.
+在它上面运行的模块可以获得和Activity或者Fragment完全一致的体验.
 我们将业务流程模块化之后再将他们自由组合来实现更为复杂的业务,并且不会在Activity或者Fragment中看到臃肿的代码.
 每个单独的模块也有一个很清晰的流程非常容易维护和拓展.
 
@@ -12,7 +12,7 @@
 
 设置依赖项
 ```
-implementation 'support.lfp:moduleplatform:1.0.0'
+implementation 'support.lfp:ModulePlatform:1.0.0'
 ```
 该项目在AndroidX基础上搭建,需要一下库:
 ```

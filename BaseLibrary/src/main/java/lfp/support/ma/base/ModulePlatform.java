@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
 import java.lang.ref.WeakReference;
@@ -120,19 +121,19 @@ public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformCo
 
     @Override
     public Context getContext() {
-        if(checkPlatformOwnerIsNull())return null;
+        if (checkPlatformOwnerIsNull()) return null;
         return mModulePlatformOwner.get().getContext();
     }
 
     @Override
     public Activity getActivity() {
-        if(checkPlatformOwnerIsNull())return null;
+        if (checkPlatformOwnerIsNull()) return null;
         return mModulePlatformOwner.get().getActivity();
     }
 
     @Override
     public FragmentManager getSmartFragmentManager() {
-        if(checkPlatformOwnerIsNull())return null;
+        if (checkPlatformOwnerIsNull()) return null;
         return mModulePlatformOwner.get().getSmartFragmentManager();
     }
 
@@ -177,9 +178,28 @@ public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformCo
     }
 
     @Override
+    public void startActivity(Intent intent) {
+        if (checkPlatformOwnerIsNull()) return;
+        mModulePlatformOwner.get().startActivity(intent);
+    }
+
+    @Override
+    public void startActivity(Intent intent, @Nullable Bundle options) {
+        if (checkPlatformOwnerIsNull()) return;
+        mModulePlatformOwner.get().startActivity(intent, options);
+    }
+
+    @Override
     public void startActivityForResult(Intent intent, int requestCode) {
-        if(checkPlatformOwnerIsNull())return  ;
+        if (checkPlatformOwnerIsNull()) return;
         mModulePlatformOwner.get().startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+        if (checkPlatformOwnerIsNull()) return;
+        mModulePlatformOwner.get().startActivityForResult(intent, requestCode, options);
+
     }
 
 

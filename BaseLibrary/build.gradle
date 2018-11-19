@@ -12,14 +12,15 @@ android {
 
     }
 
-
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
     compileOnly 'androidx.fragment:fragment:1.0.0+' //support-fragment
     compileOnly 'androidx.appcompat:appcompat:1.0.0+'  //appcompat-v7
 }
-
 
 
 apply from: "bintrayUpload.gradle"

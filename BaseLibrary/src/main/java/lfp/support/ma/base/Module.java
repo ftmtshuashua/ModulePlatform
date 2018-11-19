@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
 import java.lang.ref.WeakReference;
@@ -47,23 +48,46 @@ public class Module implements ModulePlatformContext, ModulePlatformLifecycle, M
     }
 
     @Override
+    public void startActivity(Intent intent) {
+        if (checkPlatformOwnerIsNull()) return;
+        mPlatformOwner.get().startActivity(intent);
+    }
+
+    @Override
+    public void startActivity(Intent intent, @Nullable Bundle options) {
+        if (checkPlatformOwnerIsNull()) return;
+        mPlatformOwner.get().startActivity(intent, options);
+
+    }
+
+    @Override
     public void startActivityForResult(Intent intent, int requestCode) {
-        if(checkPlatformOwnerIsNull())return;
+        if (checkPlatformOwnerIsNull()) return;
         mPlatformOwner.get().startActivityForResult(intent, requestCode);
     }
 
     @Override
-    public Context getContext() {if(checkPlatformOwnerIsNull())return null;
+    public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+        if (checkPlatformOwnerIsNull()) return;
+        mPlatformOwner.get().startActivityForResult(intent, requestCode, options);
+
+    }
+
+    @Override
+    public Context getContext() {
+        if (checkPlatformOwnerIsNull()) return null;
         return mPlatformOwner.get().getContext();
     }
 
     @Override
-    public Activity getActivity() {if(checkPlatformOwnerIsNull())return null;
+    public Activity getActivity() {
+        if (checkPlatformOwnerIsNull()) return null;
         return mPlatformOwner.get().getActivity();
     }
 
     @Override
-    public FragmentManager getSmartFragmentManager() {if(checkPlatformOwnerIsNull())return null;
+    public FragmentManager getSmartFragmentManager() {
+        if (checkPlatformOwnerIsNull()) return null;
         return mPlatformOwner.get().getSmartFragmentManager();
     }
 

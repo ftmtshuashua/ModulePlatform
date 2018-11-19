@@ -3,6 +3,7 @@ package lfp.support.ma.base;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * <pre>
@@ -24,6 +25,9 @@ public interface ModulePlatformApi {
 
     void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults);
 
-    void startActivityForResult(Intent intent, int requestCode);
+    void startActivity(Intent intent);
+    void startActivity(Intent intent, @Nullable Bundle options);
 
+    void startActivityForResult(Intent intent, int requestCode);
+    void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options);
 }
