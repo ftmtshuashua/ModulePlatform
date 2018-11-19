@@ -10,7 +10,7 @@ package lfp.support.ma.base;
  * Created by LiFuPing on 2018/11/13 11:03
  * </pre>
  */
-public interface ModulePlatformOwner extends ModulePlatformContext, ModulePlatformApi {
+ interface ModulePlatformOwner extends ModulePlatformContext, ModulePlatformApi {
 
     /**
      * 获得当前模块化平台

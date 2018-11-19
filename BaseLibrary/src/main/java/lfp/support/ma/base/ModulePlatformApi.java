@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
  * Created by LiFuPing on 2018/11/13 15:17
  * </pre>
  */
-public interface ModulePlatformApi {
+ interface ModulePlatformApi {
 
     void onRestoreInstanceState(Bundle savedInstanceState);
 

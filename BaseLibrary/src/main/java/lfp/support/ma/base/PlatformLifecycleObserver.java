@@ -13,7 +13,7 @@ import androidx.lifecycle.LifecycleOwner;
  * Created by LiFuPing on 2018/11/13 16:13
  * </pre>
  */
-public class PlatformLifecycleObserver implements GenericLifecycleObserver {
+class PlatformLifecycleObserver implements GenericLifecycleObserver {
 
     ModulePlatform mModulePlatform;
 
