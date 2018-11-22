@@ -114,9 +114,9 @@ public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformCo
             @Override
             public void call(Module module) {
                 module.onDestroy();
+                module.off();
             }
         });
-        module_arrays.clear();
     }
 
     @Override

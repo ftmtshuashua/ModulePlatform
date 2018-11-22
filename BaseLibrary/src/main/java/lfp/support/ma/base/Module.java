@@ -21,11 +21,30 @@ import java.lang.ref.WeakReference;
  * </pre>
  */
 public class Module implements ModulePlatformContext, ModulePlatformLifecycle, ModulePlatformApi {
-    private final WeakReference<ModulePlatform> mPlatformOwner;
+    private WeakReference<ModulePlatform> mPlatformOwner;
 
     public Module(ModulePlatform platform) {
+        setPlatform(platform);
+    }
+
+    /**
+     * 设置使用模块的平台,建立模块与平台的关系
+     *
+     * @param platform
+     */
+    public void setPlatform(ModulePlatform platform) {
+        off();
         mPlatformOwner = new WeakReference<>(platform);
         platform.addModule(this);
+    }
+
+    /**
+     * 从平台中移除模块,移除之后将切断与平台之间的联系
+     */
+    public void off() {
+        if (checkPlatformOwnerIsNull()) return;
+        mPlatformOwner.get().removeModule(this);
+        mPlatformOwner = null;
     }
 
     @Override
@@ -123,6 +142,6 @@ public class Module implements ModulePlatformContext, ModulePlatformLifecycle, M
 
 
     boolean checkPlatformOwnerIsNull() {
-        return mPlatformOwner.get() == null;
+        return mPlatformOwner == null || mPlatformOwner.get() == null;
     }
 }
