@@ -23,4 +23,4 @@ dependencies {
 }
 
 
-apply from: "bintrayUpload.gradle"
+apply plugin: 'com.github.dcendents.android-maven'

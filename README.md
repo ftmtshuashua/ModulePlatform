@@ -12,7 +12,7 @@
 
 设置依赖项
 ```
-implementation 'support.lfp:ModulePlatform:1.0.0'
+implementation 'support.support.lfp:ModulePlatform:1.0.0'
 ```
 该项目在AndroidX基础上搭建,需要一下库:
 ```

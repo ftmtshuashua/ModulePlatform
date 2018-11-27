@@ -1,13 +1,13 @@
-package lfp.support.app.module;
+package support.app.module;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.widget.Toast;
-import lfp.support.app.base.Action1;
-import lfp.support.ma.base.Module;
-import lfp.support.ma.base.ModulePlatform;
+import support.app.base.Action1;
+import support.lfp.ma.base.Module;
+import support.lfp.ma.base.ModulePlatform;
 
 /**
  * <pre>

@@ -1,6 +1,6 @@
-package lfp.support.app;
+package support.app;
 
-import lfp.support.ma.base.MPActivity;
+import support.lfp.ma.base.MPActivity;
 
 /**
  * <pre>

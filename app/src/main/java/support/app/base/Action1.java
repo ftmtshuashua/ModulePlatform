@@ -1,4 +1,4 @@
-package lfp.support.app.base;
+package support.app.base;
 
 /**
  * <pre>

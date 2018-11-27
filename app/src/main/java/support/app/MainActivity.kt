@@ -1,10 +1,10 @@
-package lfp.support.app
+package support.app
 
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
-import lfp.support.app.base.Action1
-import lfp.support.app.module.ModuleTakePicture
+import support.app.base.Action1
+import support.app.module.ModuleTakePicture
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package lfp.support.ma.base;
+package support.lfp.ma.base;
 
 import androidx.lifecycle.GenericLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
