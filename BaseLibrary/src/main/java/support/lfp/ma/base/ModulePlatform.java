@@ -9,17 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
-import java.lang.ref.WeakReference;
 import java.util.Enumeration;
 import java.util.Vector;
 
 /**
  * <pre>
  * Tip:
- *      模块平台(模块的基石) - 所有模块都在个平台上运作
+ *      虚拟模块平台(模块的基石) - 所有模块都在个平台上运作
  *
  * Function:
- *      getPlatform()       :获得模块化平台实例
+ *      getPlatformOwner()  :获得模块化平台实例
  *      getContext()        :获得平台关联的Context对象
  *      getActivity()       :获得平台关联的Activity对象
  *
@@ -28,12 +27,21 @@ import java.util.Vector;
  * </pre>
  */
 public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformContext, ModulePlatformApi {
-    private final WeakReference<ModulePlatformOwner> mModulePlatformOwner;
+    private final ModulePlatformOwner mModulePlatformOwner;
     private final Vector<Module> module_arrays;
 
     public ModulePlatform(ModulePlatformOwner provider) {
-        mModulePlatformOwner = new WeakReference<>(provider);
+        mModulePlatformOwner = provider;
         module_arrays = new Vector<>();
+    }
+
+    /**
+     * 平台底层对象，如Activity获得Fragment
+     *
+     * @return 平台底层对象
+     */
+    public ModulePlatformOwner getPlatformOwner() {
+        return mModulePlatformOwner;
     }
 
     /**
@@ -122,19 +130,19 @@ public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformCo
     @Override
     public Context getContext() {
         if (checkPlatformOwnerIsNull()) return null;
-        return mModulePlatformOwner.get().getContext();
+        return mModulePlatformOwner.getContext();
     }
 
     @Override
     public Activity getActivity() {
         if (checkPlatformOwnerIsNull()) return null;
-        return mModulePlatformOwner.get().getActivity();
+        return mModulePlatformOwner.getActivity();
     }
 
     @Override
     public FragmentManager getSmartFragmentManager() {
         if (checkPlatformOwnerIsNull()) return null;
-        return mModulePlatformOwner.get().getSmartFragmentManager();
+        return mModulePlatformOwner.getSmartFragmentManager();
     }
 
     @Override
@@ -180,31 +188,31 @@ public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformCo
     @Override
     public void startActivity(Intent intent) {
         if (checkPlatformOwnerIsNull()) return;
-        mModulePlatformOwner.get().startActivity(intent);
+        mModulePlatformOwner.startActivity(intent);
     }
 
     @Override
     public void startActivity(Intent intent, @Nullable Bundle options) {
         if (checkPlatformOwnerIsNull()) return;
-        mModulePlatformOwner.get().startActivity(intent, options);
+        mModulePlatformOwner.startActivity(intent, options);
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         if (checkPlatformOwnerIsNull()) return;
-        mModulePlatformOwner.get().startActivityForResult(intent, requestCode);
+        mModulePlatformOwner.startActivityForResult(intent, requestCode);
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
         if (checkPlatformOwnerIsNull()) return;
-        mModulePlatformOwner.get().startActivityForResult(intent, requestCode, options);
+        mModulePlatformOwner.startActivityForResult(intent, requestCode, options);
 
     }
 
 
     boolean checkPlatformOwnerIsNull() {
-        return mModulePlatformOwner.get() == null;
+        return mModulePlatformOwner == null;
     }
 
 

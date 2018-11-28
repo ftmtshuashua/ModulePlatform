@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentManager;
 /**
  * <pre>
  * Tip:
- *      Fragment 模块化平台
+ *      搭载了模块化平台的Fragment
  *
  * Function:
  *
@@ -25,12 +25,20 @@ import androidx.fragment.app.FragmentManager;
 public class MPFragment extends Fragment implements ModulePlatformOwner {
 
     private ModulePlatform mPlatfrom;
+    private PlatformLifecycleObserver mPlatformLifecycleObserver;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPlatfrom = new ModulePlatform(this);
-        getLifecycle().addObserver(new PlatformLifecycleObserver(mPlatfrom));
+        mPlatformLifecycleObserver = new PlatformLifecycleObserver(mPlatfrom);
+        getLifecycle().addObserver(mPlatformLifecycleObserver);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getLifecycle().removeObserver(mPlatformLifecycleObserver);
     }
 
     @Nullable

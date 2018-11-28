@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 /**
  * <pre>
  * Tip:
- *      Activity 模块化平台
+ *      搭载了模块化平台的Activity
  *
  * Function:
  *
@@ -23,15 +23,21 @@ import androidx.fragment.app.FragmentManager;
  * </pre>
  */
 public class MPActivity extends AppCompatActivity implements ModulePlatformOwner {
-
     private ModulePlatform mPlatfrom;
+    private PlatformLifecycleObserver mPlatformLifecycleObserver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPlatfrom = new ModulePlatform(this);
-        getLifecycle().addObserver(new PlatformLifecycleObserver(mPlatfrom));
+        mPlatformLifecycleObserver = new PlatformLifecycleObserver(mPlatfrom);
+        getLifecycle().addObserver(mPlatformLifecycleObserver);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getLifecycle().removeObserver(mPlatformLifecycleObserver);
     }
 
     @Override

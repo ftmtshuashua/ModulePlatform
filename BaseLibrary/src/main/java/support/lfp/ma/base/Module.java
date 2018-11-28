@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
-import java.lang.ref.WeakReference;
-
 /**
  * <pre>
  * Tip:
@@ -21,7 +19,7 @@ import java.lang.ref.WeakReference;
  * </pre>
  */
 public class Module implements ModulePlatformContext, ModulePlatformLifecycle, ModulePlatformApi {
-    private WeakReference<ModulePlatform> mPlatformOwner;
+    private ModulePlatform mPlatformOwner;
 
     public Module(ModulePlatform platform) {
         setPlatform(platform);
@@ -30,20 +28,31 @@ public class Module implements ModulePlatformContext, ModulePlatformLifecycle, M
     /**
      * 设置使用模块的平台,建立模块与平台的关系
      *
-     * @param platform
+     * @param platform 平台
      */
     public void setPlatform(ModulePlatform platform) {
         off();
-        mPlatformOwner = new WeakReference<>(platform);
-        platform.addModule(this);
+        if (platform != null) {
+            mPlatformOwner = platform;
+            mPlatformOwner.addModule(this);
+        }
+    }
+
+    /**
+     * 获得模块化平台
+     *
+     * @return 模块化平台
+     */
+    public ModulePlatform getPlatform() {
+        return mPlatformOwner;
     }
 
     /**
      * 从平台中移除模块,移除之后将切断与平台之间的联系
      */
     public void off() {
-        if (checkPlatformOwnerIsNull()) return;
-        mPlatformOwner.get().removeModule(this);
+        if (mPlatformOwner == null) return;
+        mPlatformOwner.removeModule(this);
         mPlatformOwner = null;
     }
 
@@ -68,46 +77,46 @@ public class Module implements ModulePlatformContext, ModulePlatformLifecycle, M
 
     @Override
     public void startActivity(Intent intent) {
-        if (checkPlatformOwnerIsNull()) return;
-        mPlatformOwner.get().startActivity(intent);
+        checkPlatformOwnerIsNull();
+        mPlatformOwner.startActivity(intent);
     }
 
     @Override
     public void startActivity(Intent intent, @Nullable Bundle options) {
-        if (checkPlatformOwnerIsNull()) return;
-        mPlatformOwner.get().startActivity(intent, options);
+        checkPlatformOwnerIsNull();
+        mPlatformOwner.startActivity(intent, options);
 
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
-        if (checkPlatformOwnerIsNull()) return;
-        mPlatformOwner.get().startActivityForResult(intent, requestCode);
+        checkPlatformOwnerIsNull();
+        mPlatformOwner.startActivityForResult(intent, requestCode);
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
-        if (checkPlatformOwnerIsNull()) return;
-        mPlatformOwner.get().startActivityForResult(intent, requestCode, options);
+        checkPlatformOwnerIsNull();
+        mPlatformOwner.startActivityForResult(intent, requestCode, options);
 
     }
 
     @Override
     public Context getContext() {
-        if (checkPlatformOwnerIsNull()) return null;
-        return mPlatformOwner.get().getContext();
+        checkPlatformOwnerIsNull();
+        return mPlatformOwner.getContext();
     }
 
     @Override
     public Activity getActivity() {
-        if (checkPlatformOwnerIsNull()) return null;
-        return mPlatformOwner.get().getActivity();
+        checkPlatformOwnerIsNull();
+        return mPlatformOwner.getActivity();
     }
 
     @Override
     public FragmentManager getSmartFragmentManager() {
-        if (checkPlatformOwnerIsNull()) return null;
-        return mPlatformOwner.get().getSmartFragmentManager();
+        checkPlatformOwnerIsNull();
+        return mPlatformOwner.getSmartFragmentManager();
     }
 
     @Override
@@ -141,7 +150,7 @@ public class Module implements ModulePlatformContext, ModulePlatformLifecycle, M
     }
 
 
-    boolean checkPlatformOwnerIsNull() {
-        return mPlatformOwner == null || mPlatformOwner.get() == null;
+    private void checkPlatformOwnerIsNull() {
+        if (mPlatformOwner == null) throw new NullPointerException("请将模块关联到平台上");
     }
 }

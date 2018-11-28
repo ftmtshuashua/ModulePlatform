@@ -15,9 +15,9 @@ import androidx.lifecycle.LifecycleOwner;
  */
 class PlatformLifecycleObserver implements GenericLifecycleObserver {
 
-    ModulePlatform mModulePlatform;
+    private ModulePlatform mModulePlatform;
 
-    public PlatformLifecycleObserver(ModulePlatform platform) {
+    PlatformLifecycleObserver(ModulePlatform platform) {
         mModulePlatform = platform;
     }
 
