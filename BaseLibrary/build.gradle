@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.ftmtshuashua'
 
 android {
     compileSdkVersion 28
@@ -25,6 +23,8 @@ dependencies {
 }
 
 
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.ftmtshuashua'
 // 指定编码
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
