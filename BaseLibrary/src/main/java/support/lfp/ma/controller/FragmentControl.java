@@ -20,7 +20,15 @@ import java.util.List;
  *      缓存：加载过的Fragment不会被重复加载,防止内存泄漏
  *
  * Function:
- *
+ *      change()                        :切换Fragment
+ *      setOnFragmentInitListener()     :设置Fragment初始化监听器
+ *      setOnFragmentChangeListener()   :设置Fragment切换监听器
+ *      getTag()                        :获得Fragment唯一标识
+ *      isTag()                         :判断当前Framgnet是否为标记对应的Fragment
+ *      getCurrentFragment()            :获得当前Framgnet
+ *      getFragmentByTag()              :通过标记获得Fragment
+ *      onInit()                        :当Fragment初始化回调
+ *      onChange()                      :当Fragment切换回调
  *
  * Created by LiFuPing on 2018/6/1
  * </pre>
@@ -85,6 +93,7 @@ public abstract class FragmentControl<T> {
     }
 
 
+
     /**
      * 设置Fragment初始化监听器
      *
@@ -102,6 +111,7 @@ public abstract class FragmentControl<T> {
     public void setOnFragmentChangeListener(OnFragmentChangeListener<? super T> l) {
         mOnFragmentChange = l;
     }
+
 
     /**
      * 通过数据源获得Fragment的Tag属性值,Tag属性用于标记Fragment
@@ -164,7 +174,7 @@ public abstract class FragmentControl<T> {
         }
 
         if (fragment == null) {
-            fragment = getFragment(tag);
+            fragment = getFragmentByTag(tag);
             if (fragment == null) return;
             mFragmentTransaction.add(mCcontainerViewId, fragment, getTag(tag));
             mFragmentTransaction.show(fragment);
@@ -190,7 +200,7 @@ public abstract class FragmentControl<T> {
      * @param tag fragment的唯一标识
      * @return tag对于的fragment
      */
-    public Fragment getFragment(T tag) {
+    public Fragment getFragmentByTag(T tag) {
         Fragment fragment = mFragmentManager.findFragmentByTag(getTag(tag));
         if (fragment == null) {
             fragment = onInit(tag);
@@ -214,7 +224,7 @@ public abstract class FragmentControl<T> {
      * @param tag T
      * @return Fragment
      */
-    public abstract Fragment onInit(T tag);
+    protected abstract Fragment onInit(T tag);
 
     /**
      * 当用户切换Framgent的时候回调
@@ -222,7 +232,7 @@ public abstract class FragmentControl<T> {
      * @param tag      所显示Fragment对应的标记
      * @param fragment 当前显示的Fragment
      */
-    public void onChange(Fragment fragment, T tag) {
+    protected void onChange(Fragment fragment, T tag) {
 
     }
 
