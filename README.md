@@ -1,5 +1,5 @@
 # [ModulePlatform](https://github.com/ftmtshuashua/ModulePlatform) 简介
-[![](https://jitpack.io/v/ftmtshuashua/ModulePlatform.svg)](https://jitpack.io/#ftmtshuashua/ModulePlatform)
+
 
 `ModulePlatform` 是一个虚拟的模块化平台，所有模块都运行在它上面。在它上面运行的模块可以获得和在Activity或者Fragment中一致的体验。使用它可以很轻松的把复杂的业务逻辑拆分成独立的可复用的独立模块。
 
@@ -16,10 +16,10 @@ allprojects {
     }
 }
 ```
-在Model的build.gradle中添加
+在Model的build.gradle中添加 [![](https://jitpack.io/v/ftmtshuashua/ModulePlatform.svg)](https://jitpack.io/#ftmtshuashua/ModulePlatform)
 ```
 dependencies {
-    implementation 'com.github.ftmtshuashua:ModulePlatform:v1.0.1'
+    implementation 'com.github.ftmtshuashua:ModulePlatform:version'
 }
 ```
 该项目在AndroidX基础上搭建,需要以下库
