@@ -1,5 +1,5 @@
-# [ModulePlatform](https://github.com/ftmtshuashua/ModulePlatform) 简介
-
+# ModulePlatform
+[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 
 `ModulePlatform` 是一个虚拟的模块化平台，所有模块都运行在它上面。在它上面运行的模块可以获得和在Activity或者Fragment中一致的体验。使用它可以很轻松的把复杂的业务逻辑拆分成独立的可复用的独立模块。
 

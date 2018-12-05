@@ -5,6 +5,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +29,17 @@ import androidx.fragment.app.FragmentManager;
 public class MPActivity extends AppCompatActivity implements ModulePlatformOwner {
     private ModulePlatform mPlatfrom;
     private PlatformLifecycleObserver mPlatformLifecycleObserver;
+    private boolean isSmartSoftKeyboard = true;//一个聪明的软键盘
+
+    /**
+     * 设置是否启用一个聪明的软键盘。启用的时候系统会自动判断触摸位置是否为输入框，如果不是一个输入框
+     * 系统会自动的隐藏软键盘，并且清理焦点.
+     *
+     * @param isSmart 是否启用，默认是启用的
+     */
+    protected void setSmartSoftKeyboard(boolean isSmart) {
+        this.isSmartSoftKeyboard = isSmart;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +97,20 @@ public class MPActivity extends AppCompatActivity implements ModulePlatformOwner
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         mPlatfrom.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (isSmartSoftKeyboard && ev.getAction() == MotionEvent.ACTION_DOWN && Utils.isSoftInputVisible(this)) {
+            View touchview = Utils.findViewByXY(this, ev.getX(), ev.getY());
+            View focusview = getCurrentFocus();
+
+            if (touchview == null || !(touchview instanceof EditText)) {
+                Utils.hideSoftInput(this);
+                focusview.clearFocus();
+            }
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
 }
