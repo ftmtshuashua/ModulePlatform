@@ -8,6 +8,9 @@ import android.view.ViewConfiguration;
 import android.widget.EditText;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <pre>
  * Tip:
@@ -27,6 +30,7 @@ public class MPActivity extends LifecycleActivity {
     boolean SoftInputIsVisible = false; //软键盘已经显示
     int TouchSlop;
     float TouchX, TouchY;
+    List<View> FilterArray;/*过滤的View，被包含在该集合下的View不会导致软键盘关闭*/
 
     /**
      * 设置是否启用一个聪明的软键盘。启用的时候系统会自动判断触摸位置是否为输入框，如果不是一个输入框
@@ -36,6 +40,22 @@ public class MPActivity extends LifecycleActivity {
      */
     protected void setSmartSoftKeyboard(boolean isSmart) {
         this.isSmartSoftKeyboard = isSmart;
+    }
+
+    /**
+     * 获得过滤View，被过滤的View不会导致软键盘关闭
+     *
+     * @param v 需要过滤的View
+     */
+    protected void setSmartSoftKeyboaryFilterView(View v) {
+        if (FilterArray == null) FilterArray = new ArrayList<>();
+        FilterArray.add(v);
+    }
+
+    //判断过滤器里面是否包含View
+    private boolean isContainsFilterView(View v) {
+        if (v == null) return false;
+        return FilterArray == null ? false : FilterArray.contains(v);
     }
 
     @Override
@@ -52,10 +72,11 @@ public class MPActivity extends LifecycleActivity {
                 case MotionEvent.ACTION_DOWN:
                     TouchX = ev.getX();
                     TouchY = ev.getY();
-                    SoftInputIsVisible = Utils.isSoftInputVisible(this);
+                    View focuseView = getCurrentFocus();
+                    SoftInputIsVisible = Utils.isSoftInputVisible(this) || (focuseView != null && focuseView instanceof EditText);
                     if (SoftInputIsVisible) {
                         TouchView = Utils.findViewByXY(this, ev.getX(), ev.getY());
-                        IsHiddenAtUp = TouchView == null || !(TouchView instanceof EditText);
+                        IsHiddenAtUp = !isContainsFilterView(TouchView) && (TouchView == null || !(TouchView instanceof EditText));
                     }
                     break;
                 case MotionEvent.ACTION_MOVE:
