@@ -10,7 +10,7 @@ package support.lfp.ma.interior;
  * Created by LiFuPing on 2018/11/13 11:28
  * </pre>
  */
-public interface ImlModulePlatformLifecycle {
+public interface ImpModulePlatformLifecycle {
     void onCreate();
 
     void onStart();

@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
  * Created by LiFuPing on 2018/11/13 11:29
  * </pre>
  */
-public interface ImlModulePlatformContext {
+public interface ImpModulePlatformContext {
 
     /**
      * 获得平台关联的Context对象

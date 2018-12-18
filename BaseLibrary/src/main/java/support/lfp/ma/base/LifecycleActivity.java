@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import support.lfp.ma.interior.ImlModulePlatformOwner;
+import support.lfp.ma.interior.ImpModulePlatformOwner;
 
 /**
  * <pre>
@@ -20,7 +20,7 @@ import support.lfp.ma.interior.ImlModulePlatformOwner;
  * Created by LiFuPing on 2018/12/5 15:41
  * </pre>
  */
-class LifecycleActivity extends AppCompatActivity implements ImlModulePlatformOwner {
+class LifecycleActivity extends AppCompatActivity implements ImpModulePlatformOwner {
 
     private ModulePlatform mPlatfrom;
     private PlatformLifecycleObserver mPlatformLifecycleObserver;

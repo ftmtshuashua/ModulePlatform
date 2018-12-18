@@ -12,7 +12,7 @@ import support.lfp.ma.base.ModulePlatform;
  * Created by LiFuPing on 2018/11/13 11:03
  * </pre>
  */
-public interface ImlModulePlatformOwner extends ImlModulePlatformContext, ImlModulePlatformApi {
+public interface ImpModulePlatformOwner extends ImpModulePlatformContext, ImpModulePlatformApi {
 
     /**
      * 获得当前模块化平台

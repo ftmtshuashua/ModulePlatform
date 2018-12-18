@@ -8,10 +8,10 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
-import support.lfp.ma.interior.ImlModulePlatformApi;
-import support.lfp.ma.interior.ImlModulePlatformContext;
-import support.lfp.ma.interior.ImlModulePlatformLifecycle;
-import support.lfp.ma.interior.ImlModulePlatformOwner;
+import support.lfp.ma.interior.ImpModulePlatformApi;
+import support.lfp.ma.interior.ImpModulePlatformContext;
+import support.lfp.ma.interior.ImpModulePlatformLifecycle;
+import support.lfp.ma.interior.ImpModulePlatformOwner;
 
 import java.util.Enumeration;
 import java.util.Vector;
@@ -30,11 +30,11 @@ import java.util.Vector;
  * Created by LiFuPing on 2018/11/12 17:19
  * </pre>
  */
-public class ModulePlatform implements ImlModulePlatformLifecycle, ImlModulePlatformContext, ImlModulePlatformApi {
-    private final ImlModulePlatformOwner mModulePlatformOwner;
+public class ModulePlatform implements ImpModulePlatformLifecycle, ImpModulePlatformContext, ImpModulePlatformApi {
+    private final ImpModulePlatformOwner mModulePlatformOwner;
     private final Vector<Module> module_arrays;
 
-    public ModulePlatform(ImlModulePlatformOwner provider) {
+    public ModulePlatform(ImpModulePlatformOwner provider) {
         mModulePlatformOwner = provider;
         module_arrays = new Vector<>();
     }
@@ -44,7 +44,7 @@ public class ModulePlatform implements ImlModulePlatformLifecycle, ImlModulePlat
      *
      * @return 平台底层对象
      */
-    public ImlModulePlatformOwner getPlatformOwner() {
+    public ImpModulePlatformOwner getPlatformOwner() {
         return mModulePlatformOwner;
     }
 
