@@ -1,4 +1,4 @@
-package support.lfp.ma.base;
+package support.lfp.ma.interior;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
  * Created by LiFuPing on 2018/11/13 11:29
  * </pre>
  */
-interface ModulePlatformContext {
+public interface ImlModulePlatformContext {
 
     /**
      * 获得平台关联的Context对象

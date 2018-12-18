@@ -8,6 +8,10 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
+import support.lfp.ma.interior.ImlModulePlatformApi;
+import support.lfp.ma.interior.ImlModulePlatformContext;
+import support.lfp.ma.interior.ImlModulePlatformLifecycle;
+import support.lfp.ma.interior.ImlModulePlatformOwner;
 
 import java.util.Enumeration;
 import java.util.Vector;
@@ -26,11 +30,11 @@ import java.util.Vector;
  * Created by LiFuPing on 2018/11/12 17:19
  * </pre>
  */
-public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformContext, ModulePlatformApi {
-    private final ModulePlatformOwner mModulePlatformOwner;
+public class ModulePlatform implements ImlModulePlatformLifecycle, ImlModulePlatformContext, ImlModulePlatformApi {
+    private final ImlModulePlatformOwner mModulePlatformOwner;
     private final Vector<Module> module_arrays;
 
-    public ModulePlatform(ModulePlatformOwner provider) {
+    public ModulePlatform(ImlModulePlatformOwner provider) {
         mModulePlatformOwner = provider;
         module_arrays = new Vector<>();
     }
@@ -40,7 +44,7 @@ public class ModulePlatform implements ModulePlatformLifecycle, ModulePlatformCo
      *
      * @return 平台底层对象
      */
-    public ModulePlatformOwner getPlatformOwner() {
+    public ImlModulePlatformOwner getPlatformOwner() {
         return mModulePlatformOwner;
     }
 

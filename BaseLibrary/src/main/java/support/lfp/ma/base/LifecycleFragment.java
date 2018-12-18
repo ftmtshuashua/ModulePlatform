@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import support.lfp.ma.interior.ImlModulePlatformOwner;
 
 /**
  * <pre>
@@ -23,7 +24,7 @@ import androidx.fragment.app.FragmentManager;
  * </pre>
  */
 @SuppressLint("ValidFragment")
-class LifecycleFragment extends Fragment implements ModulePlatformOwner {
+class LifecycleFragment extends Fragment implements ImlModulePlatformOwner {
 
     private ModulePlatform mPlatfrom;
     private PlatformLifecycleObserver mPlatformLifecycleObserver;

@@ -47,9 +47,22 @@ public class MPActivity extends LifecycleActivity {
      *
      * @param v 需要过滤的View
      */
-    protected void setSmartSoftKeyboaryFilterView(View v) {
-        if (FilterArray == null) FilterArray = new ArrayList<>();
+    protected void addSmartSoftKeyboaryFilterView(View v) {
+        if (FilterArray == null) {
+            FilterArray = new ArrayList<>();
+        }
         FilterArray.add(v);
+    }
+
+    /**
+     * 移除过滤View，移除之后当用户触摸到该View的时候会导致软键盘被隐藏
+     *
+     * @param v 需要从过滤中移除的View
+     */
+    protected void deleteSmartSoftKeyboaryFilterView(View v) {
+        if (FilterArray != null) {
+            FilterArray.remove(v);
+        }
     }
 
     //判断过滤器里面是否包含View
@@ -82,13 +95,13 @@ public class MPActivity extends LifecycleActivity {
                 case MotionEvent.ACTION_MOVE:
                     if (Math.pow(Math.pow(TouchX - ev.getX(), 2) + Math.pow(TouchY - ev.getY(), 2), 0.5) >= TouchSlop) {
                         IsHiddenAtUp = false;
-                        Utils.hideSoftInput(this);
+                        if (Utils.isSoftInputVisible(this)) Utils.hideSoftInput(this);
                         getCurrentFocus().clearFocus();
                     }
                     break;
                 case MotionEvent.ACTION_UP:
                     if (IsHiddenAtUp) {
-                        Utils.hideSoftInput(this);
+                        if (Utils.isSoftInputVisible(this)) Utils.hideSoftInput(this);
                         getCurrentFocus().clearFocus();
                     }
                     TouchView = null;

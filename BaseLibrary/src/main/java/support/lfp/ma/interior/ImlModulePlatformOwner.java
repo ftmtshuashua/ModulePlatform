@@ -1,4 +1,6 @@
-package support.lfp.ma.base;
+package support.lfp.ma.interior;
+
+import support.lfp.ma.base.ModulePlatform;
 
 /**
  * <pre>
@@ -10,7 +12,7 @@ package support.lfp.ma.base;
  * Created by LiFuPing on 2018/11/13 11:03
  * </pre>
  */
- interface ModulePlatformOwner extends ModulePlatformContext, ModulePlatformApi {
+public interface ImlModulePlatformOwner extends ImlModulePlatformContext, ImlModulePlatformApi {
 
     /**
      * 获得当前模块化平台

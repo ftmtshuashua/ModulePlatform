@@ -1,4 +1,4 @@
-package support.lfp.ma.base;
+package support.lfp.ma.interior;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
  * Created by LiFuPing on 2018/11/13 15:17
  * </pre>
  */
- interface ModulePlatformApi {
+public  interface ImlModulePlatformApi {
 
     void onRestoreInstanceState(Bundle savedInstanceState);
 

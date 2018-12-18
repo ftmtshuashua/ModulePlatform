@@ -6,6 +6,32 @@
 >通过业务的模块化,我们不再关心业务的过程
 
 
+## 虚拟平台 MPActivity|MPFragment
+让Activity|Fragment变为一个虚拟平台
+
+
+## 聪明的虚拟键盘
+当用户触摸输入框以外的地方或者滑动屏幕或者点击了某个按钮的时候自动的关闭虚拟键盘并清理EditText获得的焦点
+
+>如果需要触摸某个View不让虚拟键盘关闭使用：MPActivity.addSmartSoftKeyboaryFilterView(View);
+
+>关闭该功能：MPActivity.setSmartSoftKeyboard(boolean)
+
+
+## FragmentControl
+FragmentControl的使用场景一般是HomeActivity，用来控制多个Fragment的切换，它的特点
+
+>Fragment实现OnFragmentControlProcessor接口之后可以监听用户的进入和离开
+
+>懒加载
+
+>避免内存泄漏
+
+## RadioGroupControl
+万能RadioGroup，让任何View都带有RadioItem的功能
+
+
+
 ## 配置依赖
 
 在项目的build.gradle中添加

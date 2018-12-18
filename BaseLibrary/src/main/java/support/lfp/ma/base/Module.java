@@ -7,6 +7,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
+import support.lfp.ma.interior.ImlModulePlatformApi;
+import support.lfp.ma.interior.ImlModulePlatformContext;
+import support.lfp.ma.interior.ImlModulePlatformLifecycle;
 
 /**
  * <pre>
@@ -18,7 +21,7 @@ import androidx.fragment.app.FragmentManager;
  * Created by LiFuPing on 2018/11/12 17:22
  * </pre>
  */
-public class Module implements ModulePlatformContext, ModulePlatformLifecycle, ModulePlatformApi {
+public class Module implements ImlModulePlatformContext, ImlModulePlatformLifecycle, ImlModulePlatformApi {
     private ModulePlatform mPlatformOwner;
 
     public Module(ModulePlatform platform) {

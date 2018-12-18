@@ -1,4 +1,4 @@
-package support.lfp.ma.base;
+package support.lfp.ma.interior;
 
 /**
  * <pre>
@@ -10,7 +10,7 @@ package support.lfp.ma.base;
  * Created by LiFuPing on 2018/11/13 11:28
  * </pre>
  */
-interface ModulePlatformLifecycle {
+public interface ImlModulePlatformLifecycle {
     void onCreate();
 
     void onStart();
