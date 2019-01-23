@@ -28,6 +28,7 @@ class Utils {
     private static int getContentViewInvisibleHeight(final Activity activity) {
         final FrameLayout contentView = activity.findViewById(android.R.id.content);
         final View contentViewChild = contentView.getChildAt(0);
+        if(contentViewChild==null)return 0;
         final Rect outRect = new Rect();
         contentViewChild.getWindowVisibleDisplayFrame(outRect);
         return contentViewChild.getBottom() - outRect.bottom;
