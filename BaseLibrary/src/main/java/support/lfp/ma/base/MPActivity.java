@@ -96,13 +96,15 @@ public class MPActivity extends LifecycleActivity {
                     if (Math.pow(Math.pow(TouchX - ev.getX(), 2) + Math.pow(TouchY - ev.getY(), 2), 0.5) >= TouchSlop) {
                         IsHiddenAtUp = false;
                         if (Utils.isSoftInputVisible(this)) Utils.hideSoftInput(this);
-                        getCurrentFocus().clearFocus();
+                        final View currentFocus = getCurrentFocus();
+                        if (currentFocus != null) currentFocus.clearFocus();
                     }
                     break;
                 case MotionEvent.ACTION_UP:
                     if (IsHiddenAtUp) {
                         if (Utils.isSoftInputVisible(this)) Utils.hideSoftInput(this);
-                        getCurrentFocus().clearFocus();
+                        final View currentFocus = getCurrentFocus();
+                        if (currentFocus != null) currentFocus.clearFocus();
                     }
                     TouchView = null;
                     break;
